@@ -1,3 +1,4 @@
+
 #
 # This file contains the Top PAG reference selection work-flow for mu + jets analysis.
 # as defined in
@@ -114,7 +115,7 @@ electronCut = electronGsfCut
 # Step 6
 bTagSrc = 'selectedJets'
 #bTagCut = ''
-minBTags = 2
+minBTags = 0
 
 # TriggerMatching
 addTriggerMatch = options.addTriggerMatch
@@ -139,10 +140,10 @@ globalTagData = 'DEFAULT'
 ### Output
 
 # output file
-outputFile = 'patRefSel_muJets.root'
+outputFile = 'patRefSel_fcnc.root'
 
 # event frequency of Fwk report
-fwkReportEvery = max( 1, int( maxEvents / 100 ) )
+fwkReportEvery = max( 100, ( maxEvents / 100 ) )
 
 # switch for 'TrigReport'/'TimeReport' at job end
 wantSummary = True
@@ -204,10 +205,37 @@ if len( inputFiles ) == 0:
       inputFiles = filesSingleMuRECO
 process.load( "TopQuarkAnalysis.Configuration.patRefSel_inputModule_cfi" )
 #process.source.fileNames = inputFiles
-#process.source.fileNames = cms.untracked.vstring("root://ntugrid6//cms/store/relval/CMSSW_7_4_0_pre8/RelValProdTTbar_13/AODSIM/MCRUN2_74_V7-v1/00000/44E1E4BA-50BD-E411-A57A-002618943949.root")
+#process.source.fileNames = cms.untracked.vstring("root://ntugrid6/process.source.fileNames = cms.untracked.vstring("root:/store/relval/CMSSW_7_4_0_pre8/RelValProdTTbar_13/AODSIM/MCRUN2_74_V7-v1/00000/44E1E4BA-50BD-E411-A57A-002618943949.root")
 #process.source.fileNames = cms.untracked.vstring("file:44E1E4BA-50BD-E411-A57A-002618943949.root")
 #process.source.fileNames = cms.untracked.vstring("file:EGM-RunIISpring15MiniAODv2-00003_9.root")
-process.source.fileNames = cms.untracked.vstring("file:aod_100.root")
+process.source.fileNames = cms.untracked.vstring("file:ttJets_13TeV_PY8.root")
+#process.source.fileNames = cms.untracked.vstring("file:maod2_74x.root")
+#process.source.fileNames = cms.untracked.vstring("/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_1.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_10.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_11.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_12.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_13.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_14.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_15.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_16.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_17.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_18.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_19.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_2.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_20.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_21.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_22.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_23.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_24.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_25.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_3.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_4.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_5.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_6.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_7.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_8.root",
+#                                                 "/store/user/yuanchao/mc/TTbarFCNCcZpbW/MC_PATv2-2t/160308_114118/0000/EGM-RunIISpring15MiniAODv2-00003_9.root")
+
 process.maxEvents.input  = maxEvents
 
 
@@ -301,12 +329,19 @@ process.pStandAloneGoodVertex = cms.Path( process.sStandAloneGoodVertex )
 
 from TopQuarkAnalysis.Configuration.patRefSel_refMuJets_cfi import selectedMuons, preSignalMuons, signalMuons, standAloneSignalMuonFilter
 process.selectedMuons = selectedMuons.clone( cut = muonCut )
+
 if runOnMiniAOD:
   process.selectedMuons.src = 'slimmedMuons'
+
+process.sSelectedMuon = cms.Sequence( process.selectedMuons )
+process.pSelectedMuon = cms.Path( process.sSelectedMuon )
+
 process.preSignalMuons = preSignalMuons.clone( cut = signalMuonCut )
 process.signalMuons = signalMuons.clone( maxDZ = muonVertexMaxDZ )
+
 if runOnMiniAOD:
   process.signalMuons.vertexSource = 'offlineSlimmedPrimaryVertices'
+
 process.standAloneSignalMuonFilter = standAloneSignalMuonFilter.clone()
 process.sStandAloneSignalMuon = cms.Sequence( process.standAloneSignalMuonFilter )
 process.pStandAloneSignalMuon = cms.Path( process.sStandAloneSignalMuon )
@@ -321,14 +356,21 @@ process.pStandAloneLooseMuonVeto = cms.Path( process.sStandAloneLooseMuonVeto )
 # Step 3
 
 if not runOnMiniAOD:
-  from PhysicsTools.SelectorUtils.tools.vid_id_tools import switchOnVIDElectronIdProducer, setupAllVIDIdsInModule, setupVIDElectronSelection
-  electron_ids = [ 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_CSA14_50ns_V1_cff'
-                 , 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_CSA14_PU20bx25_V0_cff'
+  from PhysicsTools.SelectorUtils.tools.vid_id_tools import * #switchOnVIDElectronIdProducer, setupAllVIDIdsInModule, setupVIDElectronSelection
+#  electron_ids = [ 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_CSA14_50ns_V1_cff'
+#                 , 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_CSA14_PU20bx25_V0_cff'
+  electron_ids = [ 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Spring15-25ns_V1_cff'
+                 , 'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Spring15-25ns-Trig-V1_cff'
                   ]
-  switchOnVIDElectronIdProducer( process )
-  process.electronIDValueMapProducer.ebReducedRecHitCollection = cms.InputTag( 'reducedEcalRecHitsEB' )
-  process.electronIDValueMapProducer.eeReducedRecHitCollection = cms.InputTag( 'reducedEcalRecHitsEE' )
-  process.electronIDValueMapProducer.esReducedRecHitCollection = cms.InputTag( 'reducedEcalRecHitsES' )
+  dataFormat = DataFormat.AOD
+  switchOnVIDElectronIdProducer( process, dataFormat )
+  my_id_modules = [                                           
+    'RecoEgamma.ElectronIdentification.Identification.cutBasedElectronID_Spring15_25ns_V1_cff',
+    'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Spring15_25ns_Trig_V1_cff',
+    # 'RecoEgamma.ElectronIdentification.Identification.heepElectronID_HEEPV51_cff',                                                          
+  ]
+
+  #add them to the VID producer
   for idmod in electron_ids:
     setupAllVIDIdsInModule( process, idmod, setupVIDElectronSelection )
 
@@ -385,6 +427,9 @@ elif useElecEAIsoCorr and runOnMiniAOD:
 elif runOnMiniAOD:
   process.selectedElectrons.src = 'slimmedElectrons'
 
+process.sSelectedElectron = cms.Sequence( process.selectedElectrons )
+process.pSelectedElectron = cms.Path( process.sSelectedElectron )
+
 process.standAloneElectronVetoFilter = standAloneElectronVetoFilter.clone()
 process.sStandAloneElectronVeto = cms.Sequence( process.standAloneElectronVetoFilter )
 process.pStandAloneElectronVeto = cms.Path( process.sStandAloneElectronVeto )
@@ -396,6 +441,9 @@ process.selectedJets = selectedJets.clone( cut = jetCut )
 if runOnMiniAOD:
   process.selectedJets.src = 'slimmedJets'
 
+process.sSelectedJet = cms.Sequence( process.selectedJets )
+process.pSelectedJet = cms.Path( process.sSelectedJet )
+
 from TopQuarkAnalysis.Configuration.patRefSel_refMuJets_cfi import signalVeryTightJets, standAloneSignalVeryTightJetsFilter
 process.signalVeryTightJets = signalVeryTightJets.clone( cut = veryTightJetCut )
 process.standAloneSignalVeryTightJetsFilter = standAloneSignalVeryTightJetsFilter.clone()
@@ -405,22 +453,22 @@ process.pStandAlone1Jet = cms.Path( process.sStandAlone1Jet )
 from TopQuarkAnalysis.Configuration.patRefSel_refMuJets_cfi import signalTightJets, standAloneSignalTightJetsFilter
 process.signalTightJets = signalTightJets.clone( cut = tightJetCut )
 process.standAloneSignalTightJetsFilter = standAloneSignalTightJetsFilter.clone()
-process.sStandAlone2Jets = cms.Sequence( process.standAloneSignalTightJetsFilter )
-process.pStandAlone2Jets = cms.Path( process.sStandAlone2Jets )
+#process.sStandAlone2Jets = cms.Sequence( process.standAloneSignalTightJetsFilter )
+#process.pStandAlone2Jets = cms.Path( process.sStandAlone2Jets )
 
 from TopQuarkAnalysis.Configuration.patRefSel_refMuJets_cfi import signalLooseJets, standAloneSignalLooseJetsFilter
 process.signalLooseJets = signalLooseJets.clone( cut = looseJetCut )
 process.standAloneSignalLooseJetsFilter = standAloneSignalLooseJetsFilter.clone()
-process.sStandAlone3Jets = cms.Sequence( process.standAloneSignalLooseJetsFilter )
-process.pStandAlone3Jets = cms.Path( process.sStandAlone3Jets )
+#process.sStandAlone3Jets = cms.Sequence( process.standAloneSignalLooseJetsFilter )
+#process.pStandAlone3Jets = cms.Path( process.sStandAlone3Jets )
 
 # Step 5
 
 from TopQuarkAnalysis.Configuration.patRefSel_refMuJets_cfi import signalVeryLooseJets, standAloneSignalVeryLooseJetsFilter
 process.signalVeryLooseJets = signalVeryLooseJets.clone( cut = veryLooseJetCut )
 process.standAloneSignalVeryLooseJetsFilter = standAloneSignalVeryLooseJetsFilter.clone()
-process.sStandAlone4Jets = cms.Sequence( process.standAloneSignalVeryLooseJetsFilter )
-process.pStandAlone4Jets = cms.Path( process.sStandAlone4Jets )
+#process.sStandAlone4Jets = cms.Sequence( process.standAloneSignalVeryLooseJetsFilter )
+#process.pStandAlone4Jets = cms.Path( process.sStandAlone4Jets )
 
 # Step 6
 
@@ -430,7 +478,35 @@ process.selectedBTagJets = selectedBTagJets.clone( src = bTagSrc
                                                  )
 process.standAloneSignalBTagsFilter = standAloneSignalBTagsFilter.clone( minNumber = minBTags )
 process.sStandAloneBTags = cms.Sequence( process.standAloneSignalBTagsFilter )
-process.pStandAloneBTags = cms.Path( process.sStandAloneBTags )
+#process.pStandAloneBTags = cms.Path( process.sStandAloneBTags )
+
+process.fcncKit = cms.EDAnalyzer('MyFCNCkit',
+      MCtag = cms.untracked.bool(False),
+#      muonlabel = cms.InputTag("intermediatePatMuonsPF"),
+#      eleclabel = cms.InputTag("intermediatePatElectronsPF"),
+      muonlabel = cms.InputTag("selectedMuons"),
+      eleclabel = cms.InputTag("selectedElectrons"),
+      pfjetlabel= cms.InputTag("selectedJets"),
+#      metlabel  = cms.InputTag("patMETsPF"),
+      metlabel  = cms.InputTag("slimmedMETs"),
+      genlabel  = cms.InputTag("prunedGenParticles"),
+      hltlabel  = cms.InputTag("TriggerResults::HLT2"),
+      pathltlabel = cms.InputTag("patTriggerEvent"),
+      offlinePVlabel = cms.InputTag("offlineSlimmedPrimaryVertices"),
+#      offlinePVBSlabel = cms.InputTag("offlinePrimaryVerticesWithBS"),
+      offlineBSlabel = cms.InputTag("offlineBeamSpot"),
+#      pixelvtxlabel = cms.InputTag("pixelVertices"),
+      genevtlabel = cms.InputTag("generator"),
+      gtdigilabel = cms.InputTag("gtDigis"),
+      rhoIsoInputLabel = cms.InputTag("fixedGridRhoFastjetAll"),
+#      rhocorrectionlabel = cms.InputTag("kt6PFJetsPFlow","rho"),
+#      sigmaLabel = cms.InputTag("kt6PFJetsPFlow","sigma"),
+      puInfoLabel = cms.InputTag("slimmedAddPileupInfo")
+)
+
+process.TFileService = cms.Service("TFileService",
+      fileName = cms.string('TTbWcZpWZ.root')
+      )
 
 # Consecutive steps
 
@@ -454,17 +530,28 @@ process.sElectronVeto  = cms.Sequence( process.sLooseMuonVeto
 process.s1Jet          = cms.Sequence( process.sElectronVeto
                                      + process.sStandAlone1Jet
                                      )
-process.s2Jets         = cms.Sequence( process.s1Jet
-                                     + process.sStandAlone2Jets
-                                     )
-process.s3Jets         = cms.Sequence( process.s2Jets
-                                     + process.sStandAlone2Jets
-                                     )
-process.s4Jets         = cms.Sequence( process.s3Jets
-                                     + process.sStandAlone4Jets
-                                     )
-process.sBTags         = cms.Sequence( process.s4Jets
+#process.s2Jets         = cms.Sequence( process.s1Jet
+#                                     + process.sStandAlone2Jets
+#                                     )
+#process.s3Jets         = cms.Sequence( process.s2Jets
+#                                     + process.sStandAlone2Jets
+#                                     )
+#process.s4Jets         = cms.Sequence( process.s3Jets
+#                                     + process.sStandAlone4Jets
+#                                     )
+##process.sBTags         = cms.Sequence( process.s4Jets
+process.sBTags         = cms.Sequence( process.s1Jet
                                      + process.sStandAloneBTags
+                                     )
+process.sfcncKit       = cms.Sequence( process.sTrigger
+#                                     + process.sStandAloneLooseMuonVeto
+                                     + process.sSelectedMuon
+#                                     + process.sStandAloneElectronVeto
+                                     + process.sSelectedElectron
+                                     + process.sSelectedJet
+#                                     + process.sElectronVeto
+                                     + process.sStandAloneBTags
+                                     + process.fcncKit
                                      )
 
 process.pTrigger       = cms.Path( process.sTrigger )
@@ -474,10 +561,11 @@ process.pSignalMuon    = cms.Path( process.sSignalMuon )
 process.pLooseMuonVeto = cms.Path( process.sLooseMuonVeto )
 process.pElectronVeto  = cms.Path( process.sElectronVeto )
 process.p1Jet          = cms.Path( process.s1Jet )
-process.p2Jets         = cms.Path( process.s2Jets )
-process.p3Jets         = cms.Path( process.s2Jets )
-process.p4Jets         = cms.Path( process.s4Jets )
-#process.pBTags         = cms.Path( process.sBTags )
+#process.p2Jets         = cms.Path( process.s2Jets )
+#process.p3Jets         = cms.Path( process.s2Jets )
+#process.p4Jets         = cms.Path( process.s4Jets )
+process.pBTags         = cms.Path( process.sBTags )
+process.pfcncKit       = cms.Path( process.sfcncKit )
 
 # Trigger matching
 
