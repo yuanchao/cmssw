@@ -65,7 +65,8 @@ veryTightJetCut = 'pt > 30.' # transverse momentum (leading jet)
 # Minimal selection for veto electrons
 # ... using GsfElectron kinematics
 # Electron ID
-electronGsfCut  =     'electronID("cutBasedElectronID-CSA14-50ns-V1-standalone-veto")'                                                  # electrons ID
+#electronGsfCut  =     'electronID("cutBasedElectronID-CSA14-50ns-V1-standalone-veto")'
+electronGsfCut  =     'electronID("cutBasedElectronID-Spring15-25ns-V1-standalone-veto")'  # electrons ID
 # Kinematics
 electronGsfCut += ' && ecalDrivenMomentum.pt > 20.'                                                                                     # transverse energy
 electronGsfCut += ' && abs(ecalDrivenMomentum.eta) < 2.5'                                                                               # pseudo-rapisity range
