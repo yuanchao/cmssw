@@ -1,3 +1,4 @@
+
 #
 # This file contains the Top PAG reference selection work-flow for mu + jets analysis.
 # as defined in
@@ -206,8 +207,7 @@ process.load( "TopQuarkAnalysis.Configuration.patRefSel_inputModule_cfi" )
 #process.source.fileNames = inputFiles
 #process.source.fileNames = cms.untracked.vstring("root://ntugrid6//cms/store/relval/CMSSW_7_4_0_pre8/RelValProdTTbar_13/AODSIM/MCRUN2_74_V7-v1/00000/44E1E4BA-50BD-E411-A57A-002618943949.root")
 #process.source.fileNames = cms.untracked.vstring("file:44E1E4BA-50BD-E411-A57A-002618943949.root")
-#process.source.fileNames = cms.untracked.vstring("file:EGM-RunIISpring15MiniAODv2-00003_9.root")
-process.source.fileNames = cms.untracked.vstring("file:aod_100.root")
+process.source.fileNames = cms.untracked.vstring("file:EGM-RunIISpring15MiniAODv2-00003_9.root")
 process.maxEvents.input  = maxEvents
 
 
@@ -432,6 +432,34 @@ process.standAloneSignalBTagsFilter = standAloneSignalBTagsFilter.clone( minNumb
 process.sStandAloneBTags = cms.Sequence( process.standAloneSignalBTagsFilter )
 process.pStandAloneBTags = cms.Path( process.sStandAloneBTags )
 
+process.fcncKit = cms.EDAnalyzer('MyFCNCkit',
+      MCtag = cms.untracked.bool(False),
+#      muonlabel = cms.InputTag("intermediatePatMuonsPF"),
+#      eleclabel = cms.InputTag("intermediatePatElectronsPF"),
+      muonlabel = cms.InputTag("selectedMuons"),
+      eleclabel = cms.InputTag("selectedElectrons"),
+      pfjetlabel= cms.InputTag("selectedJets"),
+#      metlabel  = cms.InputTag("patMETsPF"),
+      metlabel  = cms.InputTag("slimmedMETs"),
+      genlabel  = cms.InputTag("prunedGenParticles"),
+      hltlabel  = cms.InputTag("TriggerResults::HLT"),
+      pathltlabel = cms.InputTag("patTriggerEvent"),
+      offlinePVlabel = cms.InputTag("offlineSlimmedPrimaryVertices"),
+#      offlinePVBSlabel = cms.InputTag("offlinePrimaryVerticesWithBS"),
+      offlineBSlabel = cms.InputTag("offlineBeamSpot"),
+#      pixelvtxlabel = cms.InputTag("pixelVertices"),
+      genevtlabel = cms.InputTag("generator"),
+      gtdigilabel = cms.InputTag("gtDigis"),
+      rhoIsoInputLabel = cms.InputTag("fixedGridRhoFastjetAll"),
+#      rhocorrectionlabel = cms.InputTag("kt6PFJetsPFlow","rho"),
+#      sigmaLabel = cms.InputTag("kt6PFJetsPFlow","sigma"),
+      puInfoLabel = cms.InputTag("slimmedAddPileupInfo")
+)
+
+process.TFileService = cms.Service("TFileService",
+      fileName = cms.string('output.root')
+      )
+
 # Consecutive steps
 
 process.sTrigger       = cms.Sequence( process.sStandAloneTrigger
@@ -466,6 +494,9 @@ process.s4Jets         = cms.Sequence( process.s3Jets
 process.sBTags         = cms.Sequence( process.s4Jets
                                      + process.sStandAloneBTags
                                      )
+process.sfcncKit       = cms.Sequence( process.s4Jets
+                                     + process.fcncKit
+                                     )
 
 process.pTrigger       = cms.Path( process.sTrigger )
 process.pEventCleaning = cms.Path( process.sEventCleaning )
@@ -478,6 +509,7 @@ process.p2Jets         = cms.Path( process.s2Jets )
 process.p3Jets         = cms.Path( process.s2Jets )
 process.p4Jets         = cms.Path( process.s4Jets )
 #process.pBTags         = cms.Path( process.sBTags )
+process.pfcncKit       = cms.Path( process.sfcncKit )
 
 # Trigger matching
 
