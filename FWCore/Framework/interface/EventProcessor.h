@@ -307,7 +307,7 @@ namespace edm {
     // really needed, we should remove them.
 
     //Guarantee that task group is the last to be destroyed
-    tbb::task_group taskGroup_;
+    oneapi::tbb::task_group taskGroup_;
 
     std::shared_ptr<ActivityRegistry> actReg_;  // We do not use propagate_const because the registry itself is mutable.
     edm::propagate_const<std::shared_ptr<ProductRegistry>> preg_;
@@ -330,6 +330,8 @@ namespace edm {
     std::unique_ptr<edm::LimitedTaskQueue> lumiQueue_;
     std::vector<std::shared_ptr<LuminosityBlockProcessingStatus>> streamLumiStatus_;
     std::atomic<unsigned int> streamLumiActive_{0};  //works as guard for streamLumiStatus
+
+    std::vector<std::string> branchesToDeleteEarly_;
 
     std::vector<SubProcess> subProcesses_;
     edm::propagate_const<std::unique_ptr<HistoryAppender>> historyAppender_;
